@@ -1,0 +1,218 @@
+# i3 config file (v4)
+
+####################
+### SET VARIABLES ##
+####################
+
+# Mods
+set $mod Mod1
+set $smod Mod4
+
+# Fonts
+set $i3wm_font pango:JetBrainsMono Nerd Font Bold 11
+
+# Screens
+set $screen1 "HDMI-A-0"
+set $screen2 "DisplayPort-0"
+
+# Scripts path
+set $i3wm_scripts_path $HOME/scripts
+
+# Applications
+set $i3wm_filemanager yazi
+set $i3wm_terminal kitty
+set $i3wm_browser firefox
+set $i3wm_launcher dmenu_run
+set $i3wm_compositor picom
+set $i3wm_pdfviewer okular
+
+# Workspaces
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+
+
+
+#############
+## VISUALS ##
+#############
+
+font $i3wm_font
+
+# Gaps
+gaps inner 15
+smart_gaps on 
+
+# Borders
+default_border pixel 2
+smart_borders on
+
+
+
+################
+## ON STARTUP ##
+################
+
+exec --no-startup-id dex --autostart --environment i3
+
+# Init compositor
+exec_always --no-startup-id $i3wm_compositor
+
+# Fix 2 monitors
+exec --no-startup-id xrandr --output $screen1 --primary --mode 2560x1080 --pos 1920x0 --output $screen2 --mode 1920x1080_60.00 --pos 0x0
+
+# Set wallpaper
+exec --no-startup-id "$i3wm_scripts_path/set_wallpaper.sh"
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+
+
+
+##################
+## APPLICATIONS ##
+##################
+
+# Launch application
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu='dmenu -b -i -m $screen1'
+
+# Most used applications
+bindsym $mod+Return exec $i3wm_terminal
+bindsym $mod+f exec $i3wm_browser
+bindsym $mod+o exec $i3wm_pdfviewer
+bindsym $mod+m exec $i3wm_terminal -e $i3wm_filemanager
+
+
+# Kill application
+bindsym $mod+q kill
+
+
+
+############
+## SYSTEM ##
+############
+
+# Volume
+bindsym $smod+F2 exec --no-startup-id "$i3wm_scripts_path/volume.sh VolDown"
+bindsym $smod+F3 exec --no-startup-id "$i3wm_scripts_path/volume.sh VolUp"
+bindsym $smod+F4 exec --no-startup-id "$i3wm_scripts_path/volume.sh Mute"
+
+# Print screen
+bindsym Ctrl+Print exec "$i3wm_scripts_path/print_screen.sh Window"
+bindsym Print exec "$i3wm_scripts_path/print_screen.sh Selection"
+
+# Shutdown menu
+bindsym $mod+Shift+q exec --no-startup-id "$i3wm_scripts_path/dmenu-power.sh"
+
+
+
+#########################
+## SCREEN MANIPULATION ##
+#########################
+
+tiling_drag modifier titlebar
+
+# Move containers
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Toggle split orientation
+bindsym $mod+Shift+semicolon split toggle
+
+# Fullscreen
+bindsym $mod+F11 fullscreen toggle
+
+# Toggle container layout
+bindsym $mod+Shift+question layout toggle all
+
+# Toggle floating
+bindsym $mod+space floating toggle
+
+# Float modifier
+floating_modifier $mod
+
+# Focus parent container
+bindsym $mod+a focus parent
+
+# Change container focus
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Resize containers
+bindsym $mod+Ctrl+Left resize shrink width 10 px or 10 ppt
+bindsym $mod+Ctrl+Down resize grow height 10 px or 10 ppt
+bindsym $mod+Ctrl+Up resize shrink height 10 px or 10 ppt
+bindsym $mod+Ctrl+Right resize grow width 10 px or 10 ppt
+
+
+
+################
+## WORKSPACES ##
+################
+
+# Switch workspaces
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+
+# Move containers to workspaces
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+
+
+
+########
+## i3 ##
+########
+
+# Reload i3 config file
+bindsym $mod+Shift+c reload
+# Restart i3
+bindsym $mod+Shift+r restart
+# Exit i3
+bindsym $mod+Ctrl+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit' -p"
+
+
+
+#########
+## BAR ##
+#########
+
+bar {
+        status_command SCRIPT_DIR=~/.config/i3blocks/scripts i3blocks
+        tray_output none
+        i3bar_command i3bar --transparency
+        font pango:JetBrainsMono Nerd Font Bold 11
+        position top
+
+        colors {
+            background #1f1f1f99
+            statusline #ffffff
+            focused_workspace #4d3757 #4d3757 #ffffff
+            active_workspace #4d3757 #4d3757 #ffffff
+            inactive_workspace #1f1f1f #1f1f1f #ffffff
+            }
+        
+        output primary
+}

@@ -1,0 +1,53 @@
+align=left
+color=#FFFFFF
+separator=false
+separator_block_width=15
+markup=pango
+
+[mediaplayer]
+label= 󰎇 
+#command=playerctl -p firefox metadata --format " {{ title }}"
+color=#cc7a00
+command=$SCRIPT_DIR/mediaplayer/mediaplayer
+interval=5
+
+[volume]
+command=~/scripts/i3_voldisplay.sh
+interval=1
+
+[systemctl]
+command=$SCRIPT_DIR/systemctl/systemctl
+interval=6
+markup=pango
+instance=postgresql
+color=#007acc
+label= 
+
+[arch-update]
+command=$SCRIPT_DIR/arch-update/arch-update
+interval=once
+markup=pango
+label= 
+
+#[volume]
+#command=$SCRIPT_DIR/volume-pipewire/volume-pipewire
+#interval=once
+#signal=1
+#STEP=5%
+
+[disk]
+command=$SCRIPT_DIR/disk/disk
+color=#ffb3e6
+label= 󰪶 
+interval=30
+
+[time]
+color=#ffffff
+instance=hour
+TZ=Brazil/East
+command=date "+%d/%m/%Y %H:%M" 
+label= 󱑒 
+interval=5
+
+[small-text]
+full_text=
