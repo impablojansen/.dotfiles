@@ -26,8 +26,8 @@ return {
                 "tailwindcss",
                 "gopls",
                 "eslint",
-                --"vuels",
-                "volar",
+                "vuels",
+                --"volar",
             },
             automatic_installation = true,
         })

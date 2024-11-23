@@ -1,53 +1,55 @@
 align=left
 color=#FFFFFF
 separator=false
-separator_block_width=15
+separator_block_width=20
 markup=pango
 
 [mediaplayer]
-label= 󰎇 
-#command=playerctl -p firefox metadata --format " {{ title }}"
+command=$SCRIPT_DIR/mediaplayer.sh
 color=#cc7a00
-command=$SCRIPT_DIR/mediaplayer/mediaplayer
 interval=5
+
+[email]
+command=$SCRIPT_DIR/check_email.sh
+interval=300
+color=#998844
 
 [volume]
-command=~/scripts/i3_voldisplay.sh
+command=$SCRIPT_DIR/i3_voldisplay.sh
 interval=1
-
-[systemctl]
-command=$SCRIPT_DIR/systemctl/systemctl
-interval=6
-markup=pango
-instance=postgresql
-color=#007acc
-label= 
+color=#2a9b9c
 
 [arch-update]
-command=$SCRIPT_DIR/arch-update/arch-update
+command=$SCRIPT_DIR/arch_update.sh
 interval=once
 markup=pango
-label= 
 
-#[volume]
-#command=$SCRIPT_DIR/volume-pipewire/volume-pipewire
-#interval=once
-#signal=1
-#STEP=5%
+[discord]
+command=$SCRIPT_DIR/check_open_program.sh
+interval=300
+color=#2b65c2
+instance=discord
+label= 
+
+[postgres]
+command=$SCRIPT_DIR/check_open_program.sh
+interval=300
+color=#435f8c
+instance=postgres
+label=
 
 [disk]
-command=$SCRIPT_DIR/disk/disk
+command=$SCRIPT_DIR/check_disk.sh
 color=#ffb3e6
-label= 󰪶 
 interval=30
 
-[time]
+[date]
 color=#ffffff
-instance=hour
+instance=date
 TZ=Brazil/East
-command=date "+%d/%m/%Y %H:%M" 
-label= 󱑒 
-interval=5
+command=date "+%a, %b %d  %H:%M" 
+interval=600
+label= 
 
 [small-text]
 full_text=

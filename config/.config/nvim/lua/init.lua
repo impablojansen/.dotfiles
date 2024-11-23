@@ -1,5 +1,3 @@
 require("config.lazy")
 require("remap")
 require("set")
---require("mason").setup()
---require("mason-lspconfig").setup()

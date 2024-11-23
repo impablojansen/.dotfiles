@@ -16,15 +16,20 @@ set $screen1 "HDMI-A-0"
 set $screen2 "DisplayPort-0"
 
 # Scripts path
-set $i3wm_scripts_path $HOME/scripts
+set $i3wm_scripts_path $HOME/.config/i3/scripts
 
 # Applications
+set $i3wm_discord discord
 set $i3wm_filemanager yazi
 set $i3wm_terminal kitty
 set $i3wm_browser firefox
 set $i3wm_launcher dmenu_run
 set $i3wm_compositor picom
 set $i3wm_pdfviewer okular
+set $i3wm_office onlyoffice-desktopeditors
+set $i3wm_beekeeper ~/Downloads/Beekeeper-Studio-Ultimate-4.6.8.AppImage
+set $i3wm_email neomutt
+set $i3wm_steam steam
 
 # Workspaces
 set $ws1 "1"
@@ -78,14 +83,18 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 ##################
 
 # Launch application
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu='dmenu -b -i -m $screen1'
+bindsym $mod+z exec --no-startup-id i3-dmenu-desktop --dmenu='dmenu -b -i -m $screen1'
 
 # Most used applications
 bindsym $mod+Return exec $i3wm_terminal
 bindsym $mod+f exec $i3wm_browser
-bindsym $mod+o exec $i3wm_pdfviewer
+bindsym $mod+p exec $i3wm_pdfviewer
 bindsym $mod+m exec $i3wm_terminal -e $i3wm_filemanager
-
+bindsym $mod+o exec $i3wm_office
+bindsym $mod+b exec $i3wm_beekeeper
+bindsym $mod+e exec $i3wm_terminal -e $i3wm_email
+bindsym $mod+d exec $i3wm_discord
+bindsym $mod+s exec $i3wm_steam
 
 # Kill application
 bindsym $mod+q kill
@@ -106,7 +115,7 @@ bindsym Ctrl+Print exec "$i3wm_scripts_path/print_screen.sh Window"
 bindsym Print exec "$i3wm_scripts_path/print_screen.sh Selection"
 
 # Shutdown menu
-bindsym $mod+Shift+q exec --no-startup-id "$i3wm_scripts_path/dmenu-power.sh"
+bindsym $mod+Shift+q exec --no-startup-id "$i3wm_scripts_path/dmenu_power.sh"
 
 
 
@@ -200,7 +209,7 @@ bindsym $mod+Ctrl+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut
 #########
 
 bar {
-        status_command SCRIPT_DIR=~/.config/i3blocks/scripts i3blocks
+        status_command SCRIPT_DIR=$i3wm_scripts_path i3blocks
         tray_output none
         i3bar_command i3bar --transparency
         font pango:JetBrainsMono Nerd Font Bold 11
@@ -214,5 +223,5 @@ bar {
             inactive_workspace #1f1f1f #1f1f1f #ffffff
             }
         
-        output primary
+        #output primary
 }
