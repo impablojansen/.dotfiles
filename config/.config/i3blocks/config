@@ -47,9 +47,16 @@ interval=30
 color=#ffffff
 instance=date
 TZ=Brazil/East
-command=date "+%a, %b %d  %H:%M" 
+command=date "+%a, %b %d" 
 interval=600
 label= 
+
+[time]
+color=#ffffff
+instance=america
+TZ=Brazil/East
+command=date +%H:%M
+interval=5
 
 [small-text]
 full_text=

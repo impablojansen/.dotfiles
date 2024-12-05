@@ -61,9 +61,9 @@ zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 
 # ALIASES
-alias ls='ls --color'
+alias ls='ls -a --color'
 alias vim='nvim'
 
 # SHELL INTEGRATIONS
 eval "$(fzf --zsh)"
-eval "$(zoxide init --cmd cd zsh)"
+#eval "$(zoxide init --cmd cd zsh)"

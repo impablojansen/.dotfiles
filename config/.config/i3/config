@@ -21,13 +21,13 @@ set $i3wm_scripts_path $HOME/.config/i3/scripts
 # Applications
 set $i3wm_discord discord
 set $i3wm_filemanager yazi
-set $i3wm_terminal kitty
+set $i3wm_terminal xterm
 set $i3wm_browser firefox
 set $i3wm_launcher dmenu_run
 set $i3wm_compositor picom
 set $i3wm_pdfviewer okular
-set $i3wm_office onlyoffice-desktopeditors
-set $i3wm_beekeeper ~/Downloads/Beekeeper-Studio-Ultimate-4.6.8.AppImage
+set $i3wm_office ~/Desktop/DesktopEditors-x86_64.AppImage
+set $i3wm_beekeeper ~/Desktop/BeekeeperStudio468.AppImage
 set $i3wm_email neomutt
 set $i3wm_steam steam
 
@@ -52,7 +52,7 @@ font $i3wm_font
 
 # Gaps
 gaps inner 15
-smart_gaps on 
+smart_gaps on
 
 # Borders
 default_border pixel 2

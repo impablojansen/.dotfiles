@@ -1,9 +1,7 @@
 XTerm*renderFont: true
-!XTerm*foreground: #Cdd6F4
-!XTerm*background: #F1F1F1
-XTerm*faceName: xtf:JetBrainsMono Nerd Font
-XTerm*faceSize: 14
-XTerm*utf8: 2
+XTerm*faceName: JetBrainsMono Nerd Font
+XTerm*faceSize: 10
+XTerm*utf8: 1
 XTerm*locale: true
 
 XTerm*selectToClipboard: true
