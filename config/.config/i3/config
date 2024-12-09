@@ -17,6 +17,7 @@ set $screen2 "DisplayPort-0"
 
 # Scripts path
 set $i3wm_scripts_path $HOME/.config/i3/scripts
+set $polybar_script $HOME/.config/polybar/launch.sh
 
 # Applications
 set $i3wm_discord discord
@@ -76,7 +77,8 @@ exec --no-startup-id xrandr --output $screen1 --primary --mode 2560x1080 --pos 1
 exec --no-startup-id "$i3wm_scripts_path/set_wallpaper.sh"
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
-
+# Execute polybar
+exec_always --no-startup-id $polybar_script
 
 ##################
 ## APPLICATIONS ##
@@ -208,20 +210,20 @@ bindsym $mod+Ctrl+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut
 ## BAR ##
 #########
 
-bar {
-        status_command SCRIPT_DIR=$i3wm_scripts_path i3blocks
-        tray_output none
-        i3bar_command i3bar --transparency
-        font pango:JetBrainsMono Nerd Font Bold 11
-        position top
-
-        colors {
-            background #1f1f1f99
-            statusline #ffffff
-            focused_workspace #4d3757 #4d3757 #ffffff
-            active_workspace #4d3757 #4d3757 #ffffff
-            inactive_workspace #1f1f1f #1f1f1f #ffffff
-            }
-        
-        #output primary
-}
+#bar {
+#        status_command SCRIPT_DIR=$i3wm_scripts_path i3blocks
+#        tray_output none
+#        i3bar_command i3bar --transparency
+#        font pango:JetBrainsMono Nerd Font Bold 11
+#        position top
+#
+#        colors {
+#            background #1f1f1f99
+#            statusline #ffffff
+#            focused_workspace #4d3757 #4d3757 #ffffff
+#            active_workspace #4d3757 #4d3757 #ffffff
+#            inactive_workspace #1f1f1f #1f1f1f #ffffff
+#            }
+#        
+#        #output primary
+#}
