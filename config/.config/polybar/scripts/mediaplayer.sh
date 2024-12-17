@@ -1,3 +1,5 @@
 #!/bin/bash
 
-echo $(playerctl -p firefox metadata --format "󰎇 {{ title }}")
+PLAYER=chromium
+
+echo $(playerctl -p $PLAYER metadata --format "󰎇 {{ title }}")

@@ -1,6 +1,7 @@
 return {
     {
         "neovim/nvim-lspconfig",
+        "lspcontainers/lspcontainers.nvim",
         event = { "BufReadPre", "BufNewFile" },
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
@@ -55,33 +56,57 @@ return {
                 },
             })
 
+            --lspconfig["html"].setup({
+            --	capabilities = capabilities,
+            --	on_attach = on_attach,
+            --})
+
             lspconfig["gopls"].setup({
-                capabilities = capabilities,
                 on_attach = on_attach,
+                capabilities = capabilities,
+                cmd = require("lspcontainers").command("gopls", {
+                    image = "rastreador-veiculos-golang-dev-1",
+                    cmd = function(runtime, volume, image)
+                        return {
+                            runtime,
+                            "container",
+                            "run",
+                            "--interactive",
+                            "--rm",
+                            "--volume",
+                            volume,
+                            image
+                        }
+                    end
+                }),
+                root_dir = require("lspconfig/util").root_pattern(".git", vim.fn.getcwd())
             })
 
             --lspconfig["gopls"].setup({
+            --    before_init = function(params)
+            --        params.processId = vim.NIL
+            --    end,
             --    cmd = {
             --        "docker",
             --        "exec",
-            --        "-i",
-            --        "boring_bhaskara", --CONTAINER NAME
+            --        --"--rm",
+            --        --"-v",
+            --        --"~/Projects/rastreador-veiculos/",
+            --        "rastreador-veiculos-golang-dev-1",
             --        "gopls",
             --    },
-            --    root_dir = lspconfig.util.root_pattern("go.mod", ".git"), -- ROOT DIR DETECTION
+            --    filetypes = { "go", "gomod" },
+            --    root_dir = require('lspconfig').util.root_pattern("go.mod", ".git"),
+            --    -- ou use a função util.path.dirname para apontar explicitamente para o diretório correto
+            --    workspace_folders = { "/app" },
             --    capabilities = capabilities,
             --    on_attach = on_attach,
-            --    settings = {
-            --        gopls = {
-            --            analyses = {
-            --                unusedparams = true,
-            --            },
-            --            staticcheck = true,
-            --        },
-            --    },
-            --    filetypes = { "go", "gomod", "gowork", "gotmpl" },
             --})
 
+            --lspconfig["cssls"].setup({
+            --	capabilities = capabilities,
+            --	on_attach = on_attach,
+            --})
 
             --lspconfig["tailwindcss"].setup({
             --	capabilities = capabilities,

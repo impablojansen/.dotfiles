@@ -1,4 +1,4 @@
-# i3 config file (v4)
+#i3 config file (v4)
 
 ####################
 ### SET VARIABLES ##
@@ -20,17 +20,14 @@ set $i3wm_scripts_path $HOME/.config/i3/scripts
 set $polybar_script $HOME/.config/polybar/launch.sh
 
 # Applications
-set $i3wm_discord discord
-set $i3wm_filemanager yazi
 set $i3wm_terminal xterm
-set $i3wm_browser firefox
+set $i3wm_browser io.github.ungoogled_software.ungoogled_chromium
 set $i3wm_launcher dmenu_run
 set $i3wm_compositor picom
-set $i3wm_pdfviewer okular
-set $i3wm_office ~/Desktop/DesktopEditors-x86_64.AppImage
-set $i3wm_beekeeper ~/Desktop/BeekeeperStudio468.AppImage
-set $i3wm_email neomutt
-set $i3wm_steam steam
+set $i3wm_pdfviewer org.kde.okular
+set $i3wm_office org.onlyoffice.desktopeditors
+set $i3wm_beekeeper io.beekeeperstudio.Studio
+set $i3wm_steam com.valvesoftware.Steam
 
 # Workspaces
 set $ws1 "1"
@@ -89,14 +86,11 @@ bindsym $mod+z exec --no-startup-id i3-dmenu-desktop --dmenu='dmenu -b -i -m $sc
 
 # Most used applications
 bindsym $mod+Return exec $i3wm_terminal
-bindsym $mod+f exec $i3wm_browser
-bindsym $mod+p exec $i3wm_pdfviewer
-bindsym $mod+m exec $i3wm_terminal -e $i3wm_filemanager
-bindsym $mod+o exec $i3wm_office
-bindsym $mod+b exec $i3wm_beekeeper
-bindsym $mod+e exec $i3wm_terminal -e $i3wm_email
-bindsym $mod+d exec $i3wm_discord
-bindsym $mod+s exec $i3wm_steam
+bindsym $mod+f exec --no-startup-id flatpak run $i3wm_browser
+bindsym $mod+p exec --no-startup-id flatpak run $i3wm_pdfviewer
+bindsym $mod+o exec --no-startup-id flatpak run $i3wm_office
+bindsym $mod+b exec --no-startup-id flatpak run $i3wm_beekeeper
+bindsym $mod+s exec --no-startup-id flatpak run $i3wm_steam
 
 # Kill application
 bindsym $mod+q kill

@@ -21,15 +21,15 @@ return {
         mason_lspconfig.setup({
             ensure_installed = {
                 "lua_ls",
-                "html",
-                "cssls",
-                "tailwindcss",
-                "gopls",
-                "eslint",
-                "vuels",
+                --"html",
+                --"cssls",
+                --"tailwindcss",
+                --"gopls",
+                --"eslint",
+                --"vuels",
                 --"volar",
             },
-            automatic_installation = true,
+            automatic_installation = false,
         })
     end
 }
