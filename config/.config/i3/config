@@ -107,11 +107,11 @@ bindsym $smod+F3 exec --no-startup-id "$i3wm_scripts_path/volume.sh VolUp"
 bindsym $smod+F4 exec --no-startup-id "$i3wm_scripts_path/volume.sh Mute"
 
 # Print screen
-bindsym Ctrl+Print exec "$i3wm_scripts_path/print_screen.sh Window"
-bindsym Print exec "$i3wm_scripts_path/print_screen.sh Selection"
+#bindsym Ctrl+Print exec "$i3wm_scripts_path/print_screen.sh Window"
+#bindsym Print exec "$i3wm_scripts_path/print_screen.sh Selection"
 
 # Shutdown menu
-bindsym $mod+Shift+q exec --no-startup-id "$i3wm_scripts_path/dmenu_power.sh"
+#bindsym $mod+Shift+q exec --no-startup-id "$i3wm_scripts_path/dmenu_power.sh"
 
 
 
